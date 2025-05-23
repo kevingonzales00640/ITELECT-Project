@@ -3,27 +3,609 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Log In </title>
+    <title>Lost & Found Hub - Main</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+        }
+
+
+        .navbar {
+            background-color: #2c3e50;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            color: #ecf0f1 !important;
+            font-weight: 700;
+            font-size: 1.75rem;
+            transition: color 0.4s ease, transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #3498db !important;
+            transform: scale(1.02);
+        }
+
+        .nav-link {
+            color: #ecf0f1 !important;
+            font-weight: 600;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: #3498db;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #3498db !important;
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar-toggler {
+            border-color: rgba(236, 240, 241, 0.3) !important;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28236, 240, 241, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+        
+    
+        .btn-primary {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #2980b9, #3498db);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline-light {
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            border-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background-color: white;
+            color: #3498db;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline-primary {
+            border-radius: 10px;
+            font-weight: bold;
+            color: #3498db;
+            border-color: #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #3498db;
+            color: white;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+      
+        .form-control.rounded-pill,
+        .form-select.rounded-pill {
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control.rounded-pill:focus,
+        .form-select.rounded-pill:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+            outline: none;
+        }
+
+      
+        .footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 25px 0;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        
+        .main-content {
+            padding: 40px 15px; 
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: white;
+            padding: 60px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem; 
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-section p {
+            font-size: 1rem; 
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+      
+        .item-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid;
+            word-wrap: break-word; 
+            height: 100%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item-card.lost {
+            border-left-color: #e74c3c;
+        }
+
+        .item-card.found {
+            border-left-color: #2ecc71;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .item-card h5 {
+            color: #2c3e50;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+        }
+
+        .item-card h5 i {
+            font-size: 1.5em;
+        }
+
+ 
+        .message-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .message-box.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message-box.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            margin-bottom: 30px;
+        }
+
+        .modal-dialog {
+            max-width: 500px; 
+        }
+        .btn-close-white {
+            filter: invert(1);
+        }
+
+      
+        @media (max-width: 767.98px) {
+            .hero-section {
+                padding: 40px 15px;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .hero-section p {
+                font-size: 0.9rem;
+            }
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            .nav-link {
+                padding: 0.5rem 0.75rem !important;
+            }
+            .item-card h5 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
-<form action="action_page.php" method="post">
-    <div class="imgcontainer">
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+<body>
+
+    <div id="messageBox" class="message-box"></div>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Lost & Found Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, <span id="loggedInUser">Guest</span>!</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content" id="mainAppContent">
+        <div class="hero-section">
+            <h1>Find What's Lost, Return What's Found.</h1>
+            <p>Your community hub for reuniting owners with their cherished belongings.</p>
+            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#reportItemModal">Report an Item</button>
+        </div>
+
+        <h3 class="text-center mb-4">Recently Lost Items</h3>
+        <div id="lostItemsDisplay" class="row mb-5">
+            </div>
+
+        <h3 class="text-center mb-4">Recent Found Items</h3>
+
+        <div class="input-group mb-4 search-bar">
+            <input type="text" class="form-control rounded-pill" id="itemSearch" placeholder="Search items by name or description...">
+            <button class="btn btn-outline-primary rounded-pill ms-2" type="button" onclick="renderFoundItems()">Search</button>
+        </div>
+
+        <div id="foundItemsDisplay" class="row">
+            </div>
     </div>
-  
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-  
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+
+    <div class="modal fade" id="reportItemModal" tabindex="-1" aria-labelledby="reportItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="reportItemModalLabel">Report a Lost or Found Item</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="submitItem">
+                        <div class="mb-3">
+                            <label for="itemType" class="form-label">Type</label>
+                            <select class="form-select rounded-pill" id="itemType" required>
+                                <option value="">Select Type</option>
+                                <option value="Lost">Lost</option>
+                                <option value="Found">Found</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemName" class="form-label">Item Name</label>
+                            <input type="text" class="form-control rounded-pill" id="itemName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemDescription" class="form-label">Description</label>
+                            <textarea class="form-control rounded-pill" id="itemDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactInfo" class="form-label">Contact Information (Email/Phone)</label>
+                            <input type="text" class="form-control rounded-pill" id="contactInfo" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit Item</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+
+    <div class="modal fade" id="foundItemModal" tabindex="-1" aria-labelledby="foundItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="foundItemModalLabel">Report Found Item Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">You are reporting that you found: <strong id="foundItemNameDisplay"></strong></p>
+                    <form id="confirmFoundItemForm">
+                        <div class="mb-3">
+                            <label for="finderName" class="form-label">Your Name</label>
+                            <input type="text" class="form-control rounded-pill" id="finderName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="finderContact" class="form-label">Your Contact Information (Email/Phone)</label>
+                            <input type="text" class="form-control rounded-pill" id="finderContact" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="foundLocation" class="form-label">Where did you find it?</label>
+                            <textarea class="form-control rounded-pill" id="foundLocation" rows="2" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Submit Found Report</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </form>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <p>&copy; 2025 Lost & Found Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentUser = "Guest"; 
+
+        let items = JSON.parse(localStorage.getItem('items')) || [
+            { id: 1, type: 'Lost', name: 'Blue Backpack', description: 'A blue backpack with a few textbooks inside. Lost near the university library on May 20, 2025.', contact: 'jane.doe@example.com', poster: 'KAMBAL' },
+            { id: 2, type: 'Found', name: 'Silver Watch', description: 'A silver analog watch with a black leather strap. Found on the park bench near the playground on May 21, 2025.', contact: 'john.smith@example.com', poster: 'RENAN' },
+            { id: 3, type: 'Lost', name: 'Red Umbrella', description: 'A small red umbrella, left on bus route 14, likely near the downtown stop.', contact: 'info@example.com', poster: 'EZEKIEL' },
+            { id: 4, type: 'Found', name: 'Leather Wallet', description: 'Brown leather wallet with ID and some cash. Found near the campus cafeteria entrance on Wednesday afternoon.', contact: 'contact@example.com', poster: 'KAMBAL' },
+            { id: 5, type: 'Lost', name: 'Keys with a dog tag', description: 'Set of car keys with a unique dog-shaped keychain. Lost around the main town square on Tuesday morning.', contact: 'keys@example.com', poster: 'RENAN' },
+            { id: 6, type: 'Lost', name: 'Smartphone (iPhone)', description: 'Black iPhone 12, cracked screen and blue case. Last seen at the coffee shop on Main Street.', contact: 'phone@example.com', poster: 'EZEKIEL' },
+            { id: 7, type: 'Found', name: 'Pair of Reading Glasses', description: 'Silver-framed reading glasses, found inside the community center near the reception desk.', contact: 'glasses@example.com', poster: 'KAMBAL' },
+            { id: 8, type: 'Found', name: 'Student ID Card', description: 'Student ID card for "Alex Johnson". Found outside the lecture hall.', contact: 'uni.admin@example.com', poster: 'RENAN' }
+        ];
+
+        const loggedInUserSpan = document.getElementById('loggedInUser');
+        const lostItemsDisplay = document.getElementById('lostItemsDisplay'); 
+        const foundItemsDisplay = document.getElementById('foundItemsDisplay'); 
+        const messageBox = document.getElementById('messageBox');
+        const itemSearchInput = document.getElementById('itemSearch');
+        const submitItemForm = document.getElementById('submitItem');
+        const foundItemNameDisplay = document.getElementById('foundItemNameDisplay');
+        const confirmFoundItemForm = document.getElementById('confirmFoundItemForm');
+
+        let currentLostItemId = null; 
+
+  
+   
+        function showMessageBox(message, type) {
+            messageBox.textContent = message;
+            messageBox.className = `message-box ${type}`;
+            messageBox.style.display = 'block';
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 5000); 
+        }
+
+  
+        function renderFoundItems() {
+            foundItemsDisplay.innerHTML = '';
+            const searchTerm = itemSearchInput.value.toLowerCase();
+
+            const foundItems = items.filter(item => item.type === 'Found');
+
+            const filteredFoundItems = foundItems.filter(item =>
+                item.name.toLowerCase().includes(searchTerm) ||
+                item.description.toLowerCase().includes(searchTerm)
+            );
+
+            if (filteredFoundItems.length === 0) {
+                foundItemsDisplay.innerHTML = '<p class="text-center text-muted">No found items found matching your search criteria.</p>';
+                return;
+            }
+
+            filteredFoundItems.forEach(item => {
+                const iconClass = 'fas fa-hand-holding';
+                const itemCard = `
+                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                        <div class="item-card ${item.type.toLowerCase()}">
+                            <h5><i class="${iconClass}"></i> ${item.type}: ${item.name}</h5>
+                            <p><strong>Description:</strong> ${item.description}</p>
+                            <p><strong>Contact:</strong> ${item.contact}</p>
+                            <p><small class="text-muted">Posted by: ${item.poster}</small></p>
+                        </div>
+                    </div>
+                `;
+                foundItemsDisplay.innerHTML += itemCard;
+            });
+        }
+
+        
+        function renderLostItemsGrid() {
+            lostItemsDisplay.innerHTML = '';
+            const lostItems = items.filter(item => item.type === 'Lost');
+
+            if (lostItems.length === 0) {
+                lostItemsDisplay.innerHTML = '<p class="text-center text-muted">No lost items reported yet. Be the first!</p>';
+                return;
+            }
+
+            lostItems.forEach(item => {
+                const iconClass = 'fas fa-search-location';
+                const itemCard = `
+                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                        <div class="item-card ${item.type.toLowerCase()}">
+                            <h5><i class="${iconClass}"></i> ${item.type}: ${item.name}</h5>
+                            <p>${item.description}</p>
+                            <p><small class="text-muted">Posted by: ${item.poster}</small></p>
+                            <button class="btn btn-success btn-sm mt-2" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#foundItemModal" 
+                                onclick="prepareFoundItemModal(${item.id}, '${item.name}')">
+                                Found This Item?
+                            </button>
+                        </div>
+                    </div>
+                `;
+                lostItemsDisplay.innerHTML += itemCard;
+            });
+        }
+
+       
+      
+        function prepareFoundItemModal(itemId, itemName) {
+            currentLostItemId = itemId;
+            foundItemNameDisplay.textContent = itemName;
+            confirmFoundItemForm.reset(); 
+        }
+
+        
+
+        submitItemForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const type = document.getElementById('itemType').value;
+            const name = document.getElementById('itemName').value;
+            const description = document.getElementById('itemDescription').value;
+            const contact = document.getElementById('contactInfo').value;
+
+            
+            const newId = items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
+
+            const newItem = {
+                id: newId,
+                type: type,
+                name: name,
+                description: description,
+                contact: contact,
+                poster: currentUser 
+            };
+
+            items.unshift(newItem); 
+            localStorage.setItem('items', JSON.stringify(items));
+            showMessageBox('Item reported successfully!', 'success');
+            
+            const reportItemModal = bootstrap.Modal.getInstance(document.getElementById('reportItemModal'));
+            if (reportItemModal) {
+                reportItemModal.hide();
+            }
+
+            renderFoundItems();
+            renderLostItemsGrid();
+            this.reset();
+        });
+
+        confirmFoundItemForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const finderName = document.getElementById('finderName').value;
+            const finderContact = document.getElementById('finderContact').value;
+            const foundLocation = document.getElementById('foundLocation').value;
+
+            const lostItemIndex = items.findIndex(item => item.id === currentLostItemId && item.type === 'Lost');
+
+            if (lostItemIndex !== -1) {
+              
+                items[lostItemIndex].type = 'Found';
+                items[lostItemIndex].description += ` (Found by ${finderName} at ${foundLocation} on ${new Date().toLocaleDateString()})`;
+                items[lostItemIndex].contact = finderContact; 
+                items[lostItemIndex].poster = finderName; 
+
+                localStorage.setItem('items', JSON.stringify(items));
+
+                const foundItemModal = bootstrap.Modal.getInstance(document.getElementById('foundItemModal'));
+                if (foundItemModal) {
+                    foundItemModal.hide(); 
+                }
+
+                
+                const successModal = new bootstrap.Modal(document.getElementById('foundSuccessModal'));
+                successModal.show();
+
+                renderFoundItems(); 
+                renderLostItemsGrid();
+            } else {
+                showMessageBox('Error: Could not find the lost item.', 'error');
+            }
+
+            this.reset(); 
+        });
+
+        itemSearchInput.addEventListener('input', renderFoundItems);
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLostItemsGrid(); 
+            renderFoundItems(); 
+        });
+    </script>
+
+    <div class="modal fade" id="foundSuccessModal" tabindex="-1" aria-labelledby="foundSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="foundSuccessModalLabel">Item Found!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
+                    <p class="lead">Thank you for reporting the found item!</p>
+                    <p>To facilitate its return, please **go to our office at Caloocan, Metro Manila, Philippines** to submit the item.</p>
+                    <p class="text-muted">Our office hours are Monday-Friday, 9 AM - 5 PM.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got It!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
