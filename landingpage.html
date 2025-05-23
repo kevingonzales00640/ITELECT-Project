@@ -15,8 +15,6 @@
             min-height: 100vh;
             color: #333;
         }
-
-        /* Navbar Styles */
         .navbar {
             background-color: #2c3e50;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -73,7 +71,7 @@
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28236, 240, 241, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
         }
         
-        /* Button Styles */
+    
         .btn-primary {
             background: linear-gradient(45deg, #3498db, #2980b9);
             border: none;
@@ -119,7 +117,7 @@
             box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
         }
 
-        /* Form Control Styles */
+ 
         .form-control.rounded-pill,
         .form-select.rounded-pill {
             border-radius: 25px;
@@ -135,7 +133,7 @@
             outline: none;
         }
 
-        /* Footer Styles */
+
         .footer {
             background-color: #2c3e50;
             color: #ecf0f1;
@@ -144,9 +142,9 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Main Content & Hero Section */
+       
         .main-content {
-            padding: 40px 15px; /* Added horizontal padding for smaller screens */
+            padding: 40px 15px; 
         }
 
         .hero-section {
@@ -160,19 +158,19 @@
         }
 
         .hero-section h1 {
-            font-size: 2.5rem; /* Adjusted for responsiveness */
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 15px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .hero-section p {
-            font-size: 1rem; /* Adjusted for responsiveness */
+            font-size: 1rem; 
             opacity: 0.9;
             margin-bottom: 30px;
         }
 
-        /* Item Card Styles */
+       
         .item-card {
             background-color: white;
             border-radius: 15px;
@@ -181,8 +179,8 @@
             padding: 25px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-left: 5px solid;
-            word-wrap: break-word; /* Ensure long descriptions wrap */
-            height: 100%; /* Ensure cards in a row have equal height */
+            word-wrap: break-word; 
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -207,14 +205,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.25rem; /* Adjusted for responsiveness */
+            font-size: 1.25rem;
         }
 
         .item-card h5 i {
             font-size: 1.5em;
         }
 
-        /* Message Box Styles */
         .message-box {
             position: fixed;
             top: 20px;
@@ -255,13 +252,13 @@
         }
 
         .modal-dialog {
-            max-width: 500px; /* Slightly reduced modal width */
+            max-width: 500px;
         }
         .btn-close-white {
             filter: invert(1);
         }
 
-        /* Responsive adjustments */
+       
         @media (max-width: 767.98px) {
             .hero-section {
                 padding: 40px 15px;
@@ -412,25 +409,19 @@
             { id: 8, type: 'Found', name: 'Student ID Card', description: 'Student ID card for "Alex Johnson". Found outside the lecture hall.', contact: 'uni.admin@example.com', poster: 'RENAN' }
         ];
 
-        // Get DOM elements
+        
         const loggedInUserSpan = document.getElementById('loggedInUser');
-        const lostItemsDisplay = document.getElementById('lostItemsDisplay'); // New element for lost items
-        const foundItemsDisplay = document.getElementById('foundItemsDisplay'); // Renamed from itemsDisplay
+        const lostItemsDisplay = document.getElementById('lostItemsDisplay'); 
+        const foundItemsDisplay = document.getElementById('foundItemsDisplay'); 
         const messageBox = document.getElementById('messageBox');
         const itemSearchInput = document.getElementById('itemSearch');
         const submitItemForm = document.getElementById('submitItem');
         const foundItemNameDisplay = document.getElementById('foundItemNameDisplay');
         const confirmFoundItemForm = document.getElementById('confirmFoundItemForm');
 
-        let currentLostItemId = null; // To store the ID of the lost item being reported as found
+        let currentLostItemId = null; 
 
-        // --- Helper Functions ---
-
-        /**
-         * Displays a temporary message box.
-         * @param {string} message - The message to display.
-         * @param {'success'|'error'} type - The type of message (determines styling).
-         */
+    
         function showMessageBox(message, type) {
             messageBox.textContent = message;
             messageBox.className = `message-box ${type}`;
@@ -440,9 +431,7 @@
             }, 5000); 
         }
 
-        /**
-         * Renders the list of Found items based on the search term.
-         */
+       
         function renderFoundItems() {
             foundItemsDisplay.innerHTML = '';
             const searchTerm = itemSearchInput.value.toLowerCase();
@@ -475,9 +464,7 @@
             });
         }
 
-        /**
-         * Renders the grid of "Lost" items as cards.
-         */
+
         function renderLostItemsGrid() {
             lostItemsDisplay.innerHTML = '';
             const lostItems = items.filter(item => item.type === 'Lost');
@@ -508,18 +495,14 @@
             });
         }
 
-        /**
-         * Prepares the "Found This Item?" modal with the relevant item name.
-         * @param {number} itemId - The ID of the lost item being reported as found.
-         * @param {string} itemName - The name of the lost item.
-         */
+
         function prepareFoundItemModal(itemId, itemName) {
             currentLostItemId = itemId;
             foundItemNameDisplay.textContent = itemName;
-            confirmFoundItemForm.reset(); // Clear the form
+            confirmFoundItemForm.reset(); 
         }
 
-        // --- Event Listeners ---
+
 
         submitItemForm.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -529,7 +512,7 @@
             const description = document.getElementById('itemDescription').value;
             const contact = document.getElementById('contactInfo').value;
 
-            // Generate a simple ID for the new item
+           
             const newId = items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
 
             const newItem = {
@@ -541,7 +524,7 @@
                 poster: currentUser 
             };
 
-            items.unshift(newItem); // Add to the beginning of the array
+            items.unshift(newItem); 
             localStorage.setItem('items', JSON.stringify(items));
             showMessageBox('Item reported successfully!', 'success');
             
@@ -565,7 +548,7 @@
             const lostItemIndex = items.findIndex(item => item.id === currentLostItemId && item.type === 'Lost');
 
             if (lostItemIndex !== -1) {
-                // Mark the item as "Found" and update details
+               
                 items[lostItemIndex].type = 'Found';
                 items[lostItemIndex].description += ` (Found by ${finderName} at ${foundLocation} on ${new Date().toLocaleDateString()})`;
                 items[lostItemIndex].contact = finderContact; 
@@ -578,7 +561,6 @@
                     foundItemModal.hide(); 
                 }
 
-                // Show the success message modal
                 const successModal = new bootstrap.Modal(document.getElementById('foundSuccessModal'));
                 successModal.show();
 
@@ -593,10 +575,10 @@
 
         itemSearchInput.addEventListener('input', renderFoundItems);
 
-        // --- Initial Load ---
+     
         document.addEventListener('DOMContentLoaded', () => {
-            renderLostItemsGrid(); // Render lost items as a grid
-            renderFoundItems(); // Render found items
+            renderLostItemsGrid(); 
+            renderFoundItems(); 
         });
     </script>
 
